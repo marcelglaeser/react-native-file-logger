@@ -35,7 +35,7 @@ RCT_EXPORT_METHOD(configure:(NSDictionary*)options resolver:(RCTPromiseResolveBl
     
     id<DDLogFileManager> fileManager = [[DDLogFileManagerDefault alloc] initWithLogsDirectory:logsDirectory];
     fileManager.maximumNumberOfLogFiles = [maximumNumberOfFiles unsignedIntegerValue];
-    fileManager.logFilesDiskQuota = [logFilesDiskQuota unsignedIntegerValue]
+    fileManager.logFilesDiskQuota = [logFilesDiskQuota unsignedIntegerValue];
     
     DDFileLogger* fileLogger = [[DDFileLogger alloc] initWithLogFileManager:fileManager];
     fileLogger.logFormatter = [[FileLoggerFormatter alloc] init];
