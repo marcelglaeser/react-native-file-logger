@@ -73,7 +73,7 @@ public class FileLoggerModule extends ReactContextBaseJavaModule {
         if (dailyRolling) {
             SizeAndTimeBasedRollingPolicy<ILoggingEvent> rollingPolicy = new SizeAndTimeBasedRollingPolicy<>();
             rollingPolicy.setContext(loggerContext);
-            rollingPolicy.setFileNamePattern(logsDirectory + "/" + logPrefix + "-%d{yyyy-MM-dd}.%i.log");
+            rollingPolicy.setFileNamePattern(logsDirectory + "/" + logPrefix + "-%d{yyyy-MM-dd}.%i.log.gz");
             rollingPolicy.setMaxFileSize(new FileSize(maximumFileSize));
             rollingPolicy.setTotalSizeCap(new FileSize(maximumNumberOfFiles * maximumFileSize));
             rollingPolicy.setMaxHistory(maximumNumberOfFiles);
@@ -207,7 +207,7 @@ public class FileLoggerModule extends ReactContextBaseJavaModule {
         return directory.listFiles(new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
-                return name.endsWith(".log");
+                return (name.endsWith(".log") || name.endsWith(".log.gz"));
             }
         });
     }
