@@ -118,7 +118,7 @@ public class FileLoggerModule extends ReactContextBaseJavaModule {
 
         logger.addAppender(rollingFileAppender);
         logger.setLevel(Level.DEBUG);
-        logger.setAdditive(false); /* set to true if root should log too */
+        logger.setAdditive(true); /* set to true if root should log too */
 
         configureOptions = options;
         promise.resolve(null);
