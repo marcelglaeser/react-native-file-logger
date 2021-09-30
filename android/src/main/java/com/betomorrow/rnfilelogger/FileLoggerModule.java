@@ -13,7 +13,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableArray;
 
-import org.slf4j.Logger;
+// import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
@@ -22,6 +22,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 import ch.qos.logback.classic.spi.ILoggingEvent;
@@ -112,6 +113,10 @@ public class FileLoggerModule extends ReactContextBaseJavaModule {
         // do not cleanup other loggers - BackgroundGeolocation.Logger might be there
         //root.detachAndStopAllAppenders();
         root.addAppender(rollingFileAppender);
+
+        logger.addAppender(rollingFileAppender);
+        logger.setLevel(Level.DEBUG);
+        logger.setAdditive(false); /* set to true if root should log too */
 
         configureOptions = options;
         promise.resolve(null);
